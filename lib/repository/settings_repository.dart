@@ -24,7 +24,7 @@ class SettingsRepository {
     }
   }
 
-  static Future<List<News>> getNewsWithID() async {
+  static Future<List<News>> getNewsWithID(int id) async {
     try {
       final dio = Dio();
       (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
@@ -33,7 +33,7 @@ class SettingsRepository {
         return client;
       };
       final response = await dio.get(
-          'https://apiforlearning.zendvn.com/api/categories_news/1/articles?offset=0&limit=10&sort_by=id&sort_dir=desc');
+          'https://apiforlearning.zendvn.com/api/categories_news/$id/articles?offset=0&limit=10&sort_by=id&sort_dir=desc');
       List<dynamic> data = response.data;
       List<News> result =
           data.map((e) => News.fromMap(e as Map<String, dynamic>)).toList();

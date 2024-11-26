@@ -22,10 +22,6 @@ class SettingsProvider extends ChangeNotifier {
     return await SettingsRepository.getCategoryNews();
   }
 
-  Future<List<News>> getNewsWithID(int id) async {
-    return await SettingsRepository.getNewsWithID();
-  }
-
   void handleCheckBox(int id) async {
     if (listCheck.contains(id)) {
       listCheck.remove(id);

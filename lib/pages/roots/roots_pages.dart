@@ -16,40 +16,83 @@ class RootsPages extends StatefulWidget {
 
 class _RootsPagesState extends State<RootsPages> {
   List<Widget> listPages = [
-    HomePages(idCategories: 1),
+    const HomePages(),
     const CategoryPages(),
     const SettingsPages(),
   ];
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: context.read<SettingsProvider>().scaffoldKey,
       drawer: Drawer(
+        backgroundColor: const Color(0xff22CFFE),
         child: Column(
           children: <Widget>[
-            DrawerHeader(
-              decoration: const BoxDecoration(color: AppColor.hightlightText),
-              child: Image.asset("assets/images/ellipse.png"),
+            Column(
+              children: [
+                DrawerHeader(
+                  child: Image.asset(
+                    "assets/images/ellipse.png",
+                  ),
+                ),
+                const Text(
+                  'App Tin Tức',
+                  style: TextStyle(fontSize: 32, color: Colors.white),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40,
             ),
             ListTile(
-              title: const Text('Home'),
+              title: Text(
+                'Home',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: selectedIndex == 0 ? Colors.white : Colors.amber,
+                ),
+              ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePages(idCategories: 1),
-                ));
+                setState(() {
+                  selectedIndex = 0;
+                });
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const HomePages(),
+                  ),
+                );
               },
             ),
             ListTile(
-              title: const Text('Category'),
+              title: Text(
+                'Category',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: selectedIndex == 1 ? Colors.white : Colors.amber,
+                ),
+              ),
               onTap: () {
+                setState(() {
+                  selectedIndex = 1;
+                });
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CategoryPages(),
                 ));
               },
             ),
             ListTile(
-              title: const Text('Settings'),
+              title: Text(
+                'Settings',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: selectedIndex == 2 ? Colors.white : Colors.amber,
+                ),
+              ),
               onTap: () {
+                setState(() {
+                  selectedIndex = 2;
+                });
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const SettingsPages(),
                 ));
@@ -58,7 +101,7 @@ class _RootsPagesState extends State<RootsPages> {
           ],
         ),
       ),
-      body: HomePages(idCategories: 1),
+      body: const HomePages(),
     );
   }
 }

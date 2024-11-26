@@ -7,6 +7,7 @@ class News {
   String thumb;
   String content;
   String publish_date;
+  String link;
   Map category;
   News({
     required this.id,
@@ -14,6 +15,7 @@ class News {
     required this.thumb,
     required this.content,
     required this.publish_date,
+    required this.link,
     required this.category,
   });
 
@@ -24,6 +26,7 @@ class News {
       'thumb': thumb,
       'content': content,
       'publish_date': publish_date,
+      'link': link,
       'category': category,
     };
   }
@@ -35,6 +38,7 @@ class News {
       thumb: map['thumb'] ?? '',
       content: map['content'] ?? '',
       publish_date: map['publish_date'] ?? '',
+      link: map['link'] ?? '',
       category: Map.from(
         (map['category'] ?? {}),
       ),
